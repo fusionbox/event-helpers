@@ -1,0 +1,23 @@
+{
+  "name": "event-helpers",
+  "version": "1.0.0",
+  "authors": [
+    "Fusionbox, Inc."
+  ],
+  "description": "Utils and decorators to help with event handling.",
+  "main": "dist/event-helpers.js",
+  "keywords": [
+    "event",
+    "decorators",
+    "utils",
+    "mouse",
+    "keyboard"
+  ],
+  "license": "BSD",
+  "homepage": "https://github.com/fusionbox/event-helpers",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib"
+  ]
+}
