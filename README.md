@@ -140,3 +140,20 @@ $('#mybutton').on('click', ifRightClick(function(event) {
   [KeyboardEvent.key](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key)
   property.
 - `ifKeyOf`
+
+
+## How to build
+
+To compile for node:
+
+    npm run compile-node
+
+To compile for browser:
+
+    npm run compile-browser
+
+**Note:** Make sure to `compile-browser` before committing. Thanks!
+
+To release to npm:
+
+    npm publish
