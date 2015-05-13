@@ -156,4 +156,5 @@ To compile for browser:
 
 To release to npm:
 
+    npm version patch
     npm publish
