@@ -1,5 +1,5 @@
 jest
-  .dontMock('../event-helpers')
+  .dontMock('../src/event-helpers')
   .dontMock('jquery');
 
 describe('event-helpers', function() {
@@ -8,7 +8,7 @@ describe('event-helpers', function() {
   });
 
   it('ifFn', function() {
-    let {ifFn} = require('../event-helpers'),
+    let {ifFn} = require('../src/event-helpers'),
         equalsFoo = (arg1) => arg1 === 'foo',
         callIfFoo = ifFn(equalsFoo)(this.myMock);
 
@@ -21,9 +21,33 @@ describe('event-helpers', function() {
     expect(this.myMock.mock.calls.length).toBe(1);
   });
 
+  it('ifFn works as a decorator', function() {
+    let {ifFn} = require('../src/event-helpers'),
+        equalsFoo = (arg1) => arg1 === 'foo',
+        callIfFoo = ifFn(equalsFoo),
+        myMock = this.myMock;
+
+    class MyClass {
+      @callIfFoo
+      myMethod() {
+        myMock('hello');
+      }
+    }
+
+    let myClass = new MyClass();
+
+    expect(myMock.mock.calls.length).toBe(0);
+
+    myClass.myMethod('foo');
+    expect(myMock.mock.calls.length).toBe(1);
+
+    myClass.myMethod('not foo');
+    expect(myMock.mock.calls.length).toBe(1);
+  });
+
   it('ifLeftClick', function() {
     let $ = require('jquery'),
-        {ifLeftClick} = require('../event-helpers'),
+        {ifLeftClick} = require('../src/event-helpers'),
         button = $('<button />')
           .appendTo(document.body)
           .on('click', ifLeftClick(this.myMock));
@@ -54,7 +78,7 @@ describe('event-helpers', function() {
 
   it('killLeftClickEvent', function() {
     let $ = require('jquery'),
-        {killLeftClickEvent} = require('../event-helpers'),
+        {killLeftClickEvent} = require('../src/event-helpers'),
         button = $('<button />')
           .appendTo(document.body)
           .on('click', killLeftClickEvent);
@@ -78,7 +102,7 @@ describe('event-helpers', function() {
 
   it('ifKeyOf', function() {
     let $ = require('jquery'),
-        {ifKeyOf} = require('../event-helpers'),
+        {ifKeyOf} = require('../src/event-helpers'),
         textarea = $('<textarea />')
           .appendTo(document.body)
           .on('keypress', ifKeyOf(['a', 'b'])(this.myMock));

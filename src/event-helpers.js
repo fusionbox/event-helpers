@@ -7,12 +7,23 @@
  * Returns a decorator that will be called if the predicate passes.
  */
 export function ifFn(predicate) {
-  return function(fn) {
-    return function() {
+  return function (target, key, descriptor) {
+    let fn = target;
+
+    function decorator() {
       if (predicate.apply(this, arguments)) {
         return fn.apply(this, arguments);
       }
-    };
+    }
+
+    if (typeof descriptor !== 'undefined') {
+      // we are decorating a class method
+      fn = descriptor.value;
+      descriptor.value = decorator;
+      return descriptor;
+    }
+
+    return decorator;
   };
 }
 
