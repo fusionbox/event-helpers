@@ -41,5 +41,8 @@
     "jest-cli": "^0.4.3",
     "jquery": "^2.1.4",
     "webpack": "^1.9.5"
+  },
+  "dependencies": {
+    "makedecorator": "^1.0.1"
   }
 }

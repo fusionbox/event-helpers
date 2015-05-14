@@ -1,5 +1,6 @@
 jest
   .dontMock('../src/event-helpers')
+  .dontMock('makedecorator')
   .dontMock('jquery');
 
 describe('event-helpers', function() {
