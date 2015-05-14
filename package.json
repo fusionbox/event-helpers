@@ -1,6 +1,6 @@
 {
   "name": "event-helpers",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Utils and decorators to help with event handling.",
   "main": "lib/event-helpers.js",
   "scripts": {
